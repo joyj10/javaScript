@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Image Slider</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style type="text/css">
+        *{  margin: 0;  padding: 0;  }
+        #canvas{ width: 600px;  height: 400px;  position:relative;  overflow: hidden; margin: auto;}
+        .slider_panel{	width:3000px; position:relative;}
+        .slider_image{	float: left; width: 600px; height:400px; object-fit:cover;}
+        
+        .slider_text_pane{ position:absolute; top:200px; left:50px;   }
+        .slider_text{ position:absolute; top:250px; left:-300px; background-color: rgba(255,255,255,0.5); overflow:hidden; padding:10px;  }
+        
+        .control_panel{	position: absolute; top:360px; left:270px; height:20px; overflow: hidden;  }
+        .control_btn{margin:3px; width:12px; height:12px; background-color:white; border-radius:50%; border: 2px white solid; cursor:pointer; float: left; }
+        .control_btn:hover { background-color:gray;}
+        .control_btn_active { background-color:black; }
+        </style>
+        
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js '></script>
+    <script>
+    $(function() {
+        $(".slider_text").each(function(index) {
+			$(this).attr('data-index',index);
+		});
+		$(".control_btn").each(function(index) {
+			$(this).attr('data-index',index);
+		});
+		
+		function moveSlider(index) {
+			var willMoveleft = -(index*600);
+			$(".slider_panel").animate( {left:willMoveleft }, 'slow' );
+			
+			$(".slider_text[data-index="+index+"]").show().animate({left:30},'slow');
+			$(".slider_text[data-index!="+index+"]").hide().animate({left:-300},'slow');
+			
+			$(".control_btn[data-index="+index+"]").addClass("control_btn_active");
+			$(".control_btn[data-index!="+index+"]").removeClass("control_btn_active");
+			
+		};
+		
+		$(".control_btn").click(function() {
+			var index = $(this).attr("data-index");
+			moveSlider(index);
+		});
+		
+		
+		var randomNumber = Math.round(Math.random()*4);
+		moveSlider(randomNumber);
+
+    })
+    </script>
+</head>
+<body>
+    <div class="jumbotron text-center">
+        <h1>Trip Image Slider</h1>
+        <p>Image slider with JavaScript</p> 
+    </div>
+    <div class="container"></div>
+        <div id="canvas">
+            <div class ="slider_panel">
+                <img class="slider_image" src="img/eu.jpg"/>
+                <img class="slider_image" src="img/jp.jpg"/>
+                <img class="slider_image" src="img/pl.jpg"/>
+                <img class="slider_image" src="img/usa.jpg"/>
+                <img class="slider_image" src="img/vb.jpg"/>
+            </div>
+            <div class="slider_text_panel">
+                <div class="slider_text">
+                    <h1>Europe</h1>
+                    <p>Let's go to the elegant Paris</p>
+                </div>
+                <div class="slider_text">
+                    <h1>Japan</h1>
+                    <p>Let's go to the good food japan </p>
+                </div>
+                <div class="slider_text">
+                    <h1>Philippines</h1>
+                    <p>The Best vacation spot</p>
+                </div>
+                <div class="slider_text">
+                    <h1>USA</h1>
+                    <p>The Best rest, vacation spot</p>
+                </div>
+                <div class="slider_text">
+                    <h1>Vietnam</h1>
+                    <p>Good food and great sea, the Best place</p>
+                </div>
+            </div>
+            <div>
+                <div class="control_panel">
+                    <div class="control_btn"></div>
+                    <div class="control_btn"></div>
+                    <div class="control_btn"></div>
+                    <div class="control_btn"></div>
+                    <div class="control_btn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
