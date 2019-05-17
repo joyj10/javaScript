@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+    .item{	border: 2px solid black;	border-radius: 10px;	margin-bottom : 5px;	padding:10px;	width:100%; }
+    .item img{	display: inline-block;	width:50%;}
+    .item ul{	display: inline-block;	list-style: none;	margin: 0;	padding: 0;    padding-left: 15px;    vertical-align: top; font-size: 22px;}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	var arr = [ {no:1, name:"Best dress", price:10000, fname:"dress (5).jpg"},
+		{no:2, name:"White dress", price:30000, fname:"dress (3).jpg"},
+		{no:3, name:"Red dress", price:60000, fname:"dress (25).jpg"},
+		{no:4, name:"Long dress", price:40000, fname:"dress (30).jpg"},
+		{no:5, name:"dress", price:80000, fname:"dress (34).jpg"},
+		{no:6, name:"Pink dress", price:54000, fname:"dress (35).jpg"},
+		{no:7, name:"Cute dress", price:50000, fname:"dress (38).jpg"},
+		{no:8, name:"Good dress", price:35000, fname:"dress (37).jpg"},
+		{no:9, name:"Hot dress", price:67000, fname:"dress (31).jpg"},
+		{no:10, name:"Dark dress", price:78000, fname:"dress (26).jpg"}
+		];
+    
+        
+    var goodsList = function(arr){
+        $.each(arr, function(i,goods) {
+			var item = $("<div></div>").addClass("item");
+			var list = $("<ul></ul>");
+			
+			$(list).append( $("<li></li>").html("No."+goods.no).css({"font-size":"30px","font-weight":"bold"}) )
+			$(list).append( $("<li></li>").html("Name : "+goods.name) )
+			$(list).append( $("<li></li>").html("Price : "+goods.price) )
+			
+			$(item).append( $("<img>").attr("src","img/"+goods.fname));
+			$(item).append(list);
+			$(".container").append(item);
+		});
+		( $("<h1>The end!</h1>").css("background-color","lightblue") ).appendTo(".container");
+    };
+
+	$(function() {
+
+		goodsList(arr);
+		
+		$(window).scroll(function() {
+			
+			var scrollHeight = $(window).scrollTop() + $(window).height();
+			var documentHeight = $(document).height();
+			
+			if( scrollHeight+100 >= documentHeight )
+			{	
+				goodsList(arr);
+			}	
+		});
+		
+	});
+	
+</script>
+</head>
+<body>
+    <div class="jumbotron text-center">
+        <h1>Image Scroll</h1>
+        <p>Image Scroll with JavaScript</p> 
+    </div>
+    <div class="container"></div>
+    
+</body>
+</html>
