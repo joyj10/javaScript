@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("textarea").keyup(function() {
+                var inputLength = $(this).val().length;
+                var str = inputLength;
+                
+                $("span").html(str);
+    
+            });
+        });
+    </script>
+    </head>
+    <body>
+        <p>오늘의 이야기를 써주세요(최대 150자)</p>
+        <textarea rows="5" cols="70" maxlength="150"></textarea><br>
+        <span>0</span>/150
+    </body>
+    
+</html>
